@@ -11,6 +11,15 @@ HORAS_MENSAIS = {
     "24h": 730
 }
 
+# Número de funcionários por escala (POSTO)
+NUM_FUNCIONARIOS = {
+    "05x02": 1,
+    "06x01": 1,
+    "12h_diurna": 2,
+    "12h_noturna": 2,
+    "24h": 4
+}
+
 # Nomes amigáveis das escalas
 ESCALAS_NOMES = {
     "05x02": "05x02",
