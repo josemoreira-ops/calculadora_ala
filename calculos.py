@@ -2,7 +2,7 @@
 Módulo de cálculos para precificação de mão-de-obra
 """
 from config import (
-    HORAS_MENSAIS, ENCARGOS, PROVISIONAMENTO, TRIBUTOS, 
+    HORAS_MENSAIS, NUM_FUNCIONARIOS, ENCARGOS, PROVISIONAMENTO, TRIBUTOS, 
     DESCONTOS, DIAS_BENEFICIOS, CENARIOS, DADOS_PORTARIA
 )
 
@@ -30,7 +30,7 @@ class CalculadoraPreco:
             self.dados['salario_bruto'] = salario_customizado
         
         self.horas_mensais = HORAS_MENSAIS[escala]
-        self.num_funcionarios = 2  # Sempre 2 funcionários
+        self.num_funcionarios = NUM_FUNCIONARIOS[escala]  # CORRIGIDO: número varia por escala
     
     def calcular_montante_a_folha(self):
         """Calcula MONTANTE A - FOLHA"""
@@ -124,26 +124,26 @@ class CalculadoraPreco:
         """Calcula MONTANTE C - BENEFÍCIOS"""
         beneficios = self.dados['beneficios']
         
-        # Vale Transporte
+        # Vale Transporte - NÃO MULTIPLICA por número de funcionários
         vt = beneficios['vale_transporte_dia'] * DIAS_BENEFICIOS['vale_transporte']
         desconto_vt = -(self.dados['salario_bruto'] * self.num_funcionarios * DESCONTOS['vale_transporte'])
         vt_total = vt + desconto_vt
         vt_com_dissidio = vt_total * (1 + self.provisao_dissidio)
         
-        # Cesta Básica
+        # Cesta Básica - MULTIPLICA por número de funcionários
         cesta = beneficios['cesta_basica'] * self.num_funcionarios
         cesta_com_dissidio = cesta * (1 + self.provisao_dissidio)
         
-        # PPR
+        # PPR - MULTIPLICA por número de funcionários
         ppr = (beneficios['ppr'] / 12) * self.num_funcionarios
         ppr_com_dissidio = ppr * (1 + self.provisao_dissidio)
         
-        # Auxílio Saúde
+        # Auxílio Saúde - MULTIPLICA por número de funcionários
         aux_saude = beneficios['auxilio_saude'] * self.num_funcionarios
         aux_saude_com_dissidio = aux_saude * (1 + self.provisao_dissidio)
         
-        # Vale Refeição
-        vr = beneficios['vale_refeicao_dia'] * DIAS_BENEFICIOS['vale_refeicao']
+        # Vale Refeição - MULTIPLICA por número de funcionários
+        vr = beneficios['vale_refeicao_dia'] * DIAS_BENEFICIOS['vale_refeicao'] * self.num_funcionarios
         desconto_vr = vr * DESCONTOS['vale_refeicao']
         vr_total = vr - desconto_vr
         vr_com_dissidio = vr_total * (1 + self.provisao_dissidio)
@@ -220,13 +220,13 @@ class CalculadoraPreco:
     
     def calcular_montante_e_despesas_gerais(self):
         """Calcula MONTANTE E - DESPESAS GERAIS (uniformes, celular, etc)"""
-        # Uniformes (diluição semestral)
+        # Uniformes (diluição semestral) - MULTIPLICA por número de funcionários
         uniformes = (self.dados['uniformes'] * self.num_funcionarios) / 6
         
-        # Celular
+        # Celular - NÃO multiplica (é 1 por posto)
         celular = (self.dados['celular_base'] / 12) + self.dados['celular_fixo']
         
-        # Cesta Básica II
+        # Cesta Básica II - MULTIPLICA por número de funcionários
         cesta_ii = self.dados['cesta_basica_ii'] * self.num_funcionarios
         
         total_e = uniformes + celular + cesta_ii
