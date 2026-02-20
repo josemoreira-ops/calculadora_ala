@@ -1,0 +1,202 @@
+═══════════════════════════════════════════════════════════════════════
+  COMANDOS GIT - REFERÊNCIA RÁPIDA
+═══════════════════════════════════════════════════════════════════════
+
+📌 PRIMEIRA VEZ (SETUP INICIAL)
+═══════════════════════════════════════════════════════════════════════
+
+# Navegar até a pasta do projeto
+cd C:\caminho\para\calculadora-precificacao
+
+# Inicializar Git
+git init
+
+# Configurar seu nome e email (fazer UMA VEZ no computador)
+git config --global user.name "Seu Nome"
+git config --global user.email "seu.email@empresa.com"
+
+# Adicionar todos os arquivos
+git add .
+
+# Primeiro commit
+git commit -m "Initial commit - Calculadora v1.1"
+
+# Conectar com GitHub (SUBSTITUA SEU_USUARIO)
+git remote add origin https://github.com/SEU_USUARIO/calculadora-precificacao.git
+
+# Enviar para GitHub
+git branch -M main
+git push -u origin main
+
+═══════════════════════════════════════════════════════════════════════
+📌 DIA A DIA (ATUALIZAÇÕES)
+═══════════════════════════════════════════════════════════════════════
+
+# Ver o que mudou
+git status
+
+# Adicionar todos os arquivos modificados
+git add .
+
+# Ou adicionar arquivo específico
+git add app.py
+
+# Fazer commit com mensagem
+git commit -m "Descrição clara do que mudou"
+
+# Enviar para GitHub
+git push
+
+# PRONTO! Streamlit Cloud vai atualizar automaticamente
+
+═══════════════════════════════════════════════════════════════════════
+📌 COMANDOS ÚTEIS
+═══════════════════════════════════════════════════════════════════════
+
+# Ver histórico de commits
+git log
+
+# Ver histórico simplificado
+git log --oneline
+
+# Desfazer mudanças em arquivo (antes do commit)
+git checkout -- arquivo.py
+
+# Ver diferenças do que mudou
+git diff
+
+# Ver diferenças de arquivo específico
+git diff app.py
+
+# Baixar atualizações do GitHub
+git pull
+
+# Ver repositório remoto configurado
+git remote -v
+
+# Ver branch atual
+git branch
+
+═══════════════════════════════════════════════════════════════════════
+📌 EXEMPLOS DE MENSAGENS DE COMMIT
+═══════════════════════════════════════════════════════════════════════
+
+# Boas práticas
+git commit -m "Adiciona profissão Limpeza"
+git commit -m "Corrige cálculo do VT para escala 24h"
+git commit -m "Atualiza valores CCT de SP"
+git commit -m "Melhora layout da interface"
+git commit -m "Fix: corrige erro no cálculo de dissídio"
+
+# Evite
+git commit -m "mudanças"  # ❌ muito vago
+git commit -m "fix"       # ❌ não diz o que foi corrigido
+git commit -m "aaa"       # ❌ sem significado
+
+═══════════════════════════════════════════════════════════════════════
+📌 FLUXO COMPLETO DE ATUALIZAÇÃO
+═══════════════════════════════════════════════════════════════════════
+
+1. Faça mudanças nos arquivos (no VS Code)
+2. Salve os arquivos (Ctrl+S)
+3. Abra terminal no VS Code (Ctrl+')
+4. Execute:
+
+   git add .
+   git commit -m "Atualiza salários da CCT 2026"
+   git push
+
+5. Aguarde 1-2 minutos
+6. Acesse seu app: https://seu-app.streamlit.app
+7. Recarregue a página (F5)
+8. ✅ Atualização aplicada!
+
+═══════════════════════════════════════════════════════════════════════
+📌 SITUAÇÕES ESPECIAIS
+═══════════════════════════════════════════════════════════════════════
+
+DESFAZER ÚLTIMO COMMIT (antes de fazer push):
+git reset --soft HEAD~1
+
+VOLTAR ARQUIVO PARA VERSÃO ANTERIOR:
+git checkout HEAD -- arquivo.py
+
+VER MUDANÇAS DE UM COMMIT ESPECÍFICO:
+git show HASH_DO_COMMIT
+
+CRIAR BRANCH PARA TESTAR:
+git checkout -b teste-nova-funcionalidade
+# faça mudanças
+git add .
+git commit -m "Testa nova funcionalidade"
+git push -u origin teste-nova-funcionalidade
+
+VOLTAR PARA MAIN:
+git checkout main
+
+═══════════════════════════════════════════════════════════════════════
+📌 ATALHOS NO VS CODE
+═══════════════════════════════════════════════════════════════════════
+
+Ctrl + Shift + G   →  Abrir painel Git
+Ctrl + '           →  Abrir/fechar terminal
+Ctrl + S           →  Salvar arquivo
+F1                 →  Buscar comandos Git
+
+No painel Git:
+  + (ícone)        →  git add (adicionar arquivo)
+  ✓ (ícone)        →  git commit
+  ↻ (ícone)        →  git sync (pull + push)
+
+═══════════════════════════════════════════════════════════════════════
+📌 ERROS COMUNS E SOLUÇÕES
+═══════════════════════════════════════════════════════════════════════
+
+ERRO: "Updates were rejected"
+SOLUÇÃO: 
+  git pull
+  # resolver conflitos se houver
+  git push
+
+ERRO: "fatal: not a git repository"
+SOLUÇÃO: Você não está na pasta correta
+  cd /caminho/correto
+  # ou
+  git init
+
+ERRO: "Permission denied (publickey)"
+SOLUÇÃO: Configure autenticação HTTPS ou SSH
+  https://docs.github.com/pt/authentication
+
+ERRO: "Conflict (content): Merge conflict"
+SOLUÇÃO: Edite o arquivo, resolva conflito, depois:
+  git add arquivo-com-conflito.py
+  git commit -m "Resolve conflito"
+  git push
+
+═══════════════════════════════════════════════════════════════════════
+📌 WORKFLOW RECOMENDADO PARA EQUIPES
+═══════════════════════════════════════════════════════════════════════
+
+ANTES DE COMEÇAR A TRABALHAR:
+git pull
+
+APÓS FAZER MUDANÇAS:
+git add .
+git commit -m "Descrição clara"
+git push
+
+SEMPRE TESTE LOCALMENTE ANTES:
+streamlit run app.py
+
+EVITE:
+❌ Fazer push sem testar
+❌ Commits muito grandes (prefira commits menores e frequentes)
+❌ Commitar arquivos sensíveis (.env, senhas, etc)
+
+═══════════════════════════════════════════════════════════════════════
+
+💡 DICA: Cole esses comandos em um arquivo .txt no seu desktop 
+         para ter sempre à mão!
+
+═══════════════════════════════════════════════════════════════════════

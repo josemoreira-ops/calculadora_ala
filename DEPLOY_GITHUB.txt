@@ -1,0 +1,268 @@
+═══════════════════════════════════════════════════════════════════════
+  GUIA COMPLETO: DEPLOY NO GITHUB + STREAMLIT CLOUD
+═══════════════════════════════════════════════════════════════════════
+
+🎯 OBJETIVO: Hospedar sua calculadora online GRATUITAMENTE!
+
+📌 Pré-requisitos:
+   ✓ Conta no GitHub (gratuita)
+   ✓ Conta no Streamlit Community Cloud (gratuita)
+   ✓ Git instalado no seu computador
+
+═══════════════════════════════════════════════════════════════════════
+PARTE 1: PREPARAR OS ARQUIVOS
+═══════════════════════════════════════════════════════════════════════
+
+1. Certifique-se de ter TODOS os arquivos na pasta:
+   □ app.py
+   □ calculos.py
+   □ config.py
+   □ requirements.txt
+   □ .gitignore (arquivo oculto)
+   □ README.md (use o README_GITHUB.md e renomeie)
+
+2. Renomeie README_GITHUB.md para README.md:
+   - Apague o README.md atual (é muito técnico)
+   - Renomeie README_GITHUB.md para README.md
+
+═══════════════════════════════════════════════════════════════════════
+PARTE 2: CRIAR REPOSITÓRIO NO GITHUB
+═══════════════════════════════════════════════════════════════════════
+
+MÉTODO A: Via Interface Web (Mais Fácil)
+─────────────────────────────────────────
+
+1. Acesse https://github.com
+2. Faça login na sua conta
+3. Clique no botão verde "New" (canto superior esquerdo)
+4. Preencha:
+   - Repository name: calculadora-precificacao
+   - Description: Sistema de cálculo de custos para terceirização
+   - Visibilidade: 
+     • Public (se quiser compartilhar)
+     • Private (se for interno da empresa)
+   - ❌ NÃO marque "Add a README file"
+   - ❌ NÃO adicione .gitignore
+   - ❌ NÃO escolha license
+5. Clique em "Create repository"
+
+MÉTODO B: Via GitHub Desktop (Mais Visual)
+───────────────────────────────────────────
+
+1. Baixe GitHub Desktop: https://desktop.github.com/
+2. Faça login com sua conta GitHub
+3. File → Add Local Repository
+4. Escolha a pasta do seu projeto
+5. Publish Repository
+6. Configure nome e visibilidade
+7. Pronto!
+
+═══════════════════════════════════════════════════════════════════════
+PARTE 3: SUBIR CÓDIGO PARA O GITHUB
+═══════════════════════════════════════════════════════════════════════
+
+OPÇÃO 1: Via Terminal/Prompt (Recomendado)
+───────────────────────────────────────────
+
+Abra o terminal/prompt na pasta do projeto e execute:
+
+# 1. Inicializar repositório Git
+git init
+
+# 2. Adicionar todos os arquivos
+git add .
+
+# 3. Fazer primeiro commit
+git commit -m "Initial commit - Calculadora de Precificação v1.1"
+
+# 4. Adicionar repositório remoto (SUBSTITUA SEU_USUARIO)
+git remote add origin https://github.com/SEU_USUARIO/calculadora-precificacao.git
+
+# 5. Enviar para GitHub
+git branch -M main
+git push -u origin main
+
+OPÇÃO 2: Via GitHub Desktop
+────────────────────────────
+
+1. Abra GitHub Desktop
+2. Adicione a pasta do projeto
+3. Escreva uma mensagem de commit
+4. Clique em "Commit to main"
+5. Clique em "Push origin"
+
+OPÇÃO 3: Via VS Code
+────────────────────
+
+1. Abra a pasta no VS Code
+2. Clique no ícone de Git (lado esquerdo)
+3. Clique em "Initialize Repository"
+4. Adicione todos os arquivos (ícone +)
+5. Escreva mensagem: "Initial commit"
+6. Clique em ✓ (commit)
+7. Clique em "Publish Branch"
+8. Escolha nome e visibilidade
+9. Pronto!
+
+═══════════════════════════════════════════════════════════════════════
+PARTE 4: DEPLOY NO STREAMLIT CLOUD
+═══════════════════════════════════════════════════════════════════════
+
+1. Acesse: https://share.streamlit.io/
+
+2. Clique em "Sign up" (ou "Sign in" se já tiver conta)
+   → Use sua conta do GitHub para fazer login
+
+3. Clique em "New app"
+
+4. Preencha as informações:
+   ┌─────────────────────────────────────────────────┐
+   │ Repository:  seu-usuario/calculadora-precificacao│
+   │ Branch:      main                                │
+   │ Main file:   app.py                              │
+   │ App URL:     calculadora-precificacao            │
+   │              (ou escolha outro nome)             │
+   └─────────────────────────────────────────────────┘
+
+5. Clique em "Deploy!"
+
+6. Aguarde 2-3 minutos...
+
+7. 🎉 PRONTO! Sua aplicação está online!
+   URL: https://calculadora-precificacao.streamlit.app
+   (ou o nome que você escolheu)
+
+═══════════════════════════════════════════════════════════════════════
+PARTE 5: COMPARTILHAR COM A EQUIPE
+═══════════════════════════════════════════════════════════════════════
+
+Envie o link para sua equipe comercial:
+https://seu-app.streamlit.app
+
+✓ Funciona em qualquer navegador
+✓ Funciona em celular
+✓ Não precisa instalar nada
+✓ Atualiza automaticamente quando você faz push no GitHub
+
+═══════════════════════════════════════════════════════════════════════
+PARTE 6: FAZER ATUALIZAÇÕES
+═══════════════════════════════════════════════════════════════════════
+
+Quando você quiser atualizar a aplicação:
+
+Via Terminal:
+─────────────
+git add .
+git commit -m "Descrição da mudança"
+git push
+
+Via GitHub Desktop:
+───────────────────
+1. Faça as mudanças nos arquivos
+2. Abra GitHub Desktop
+3. Escreva mensagem do commit
+4. Clique em "Commit to main"
+5. Clique em "Push origin"
+
+Via VS Code:
+────────────
+1. Faça as mudanças
+2. Vá para aba Git
+3. Adicione os arquivos (ícone +)
+4. Escreva mensagem
+5. Clique em ✓
+6. Clique em "Sync Changes"
+
+⚡ O Streamlit Cloud detecta automaticamente e faz redeploy!
+
+═══════════════════════════════════════════════════════════════════════
+SOLUÇÃO DE PROBLEMAS
+═══════════════════════════════════════════════════════════════════════
+
+Problema: "Git not found"
+Solução: Instale Git: https://git-scm.com/downloads
+
+Problema: "Permission denied" no GitHub
+Solução: Configure SSH ou use HTTPS com token
+         https://docs.github.com/pt/authentication
+
+Problema: "App not deploying" no Streamlit
+Solução: 
+  1. Verifique logs no Streamlit Cloud
+  2. Confirme que requirements.txt está correto
+  3. Teste localmente antes de fazer push
+
+Problema: "Module not found"
+Solução: Adicione o módulo em requirements.txt
+
+Problema: Repositório privado não aparece
+Solução: Dê permissão ao Streamlit acessar repositórios privados
+         em Settings → Applications no GitHub
+
+═══════════════════════════════════════════════════════════════════════
+DICAS PRO
+═══════════════════════════════════════════════════════════════════════
+
+💡 URL Customizada:
+   Você pode usar domínio próprio no Streamlit Cloud (plano pago)
+   ou usar um encurtador de URL grátis (bit.ly, tinyurl)
+
+💡 Analytics:
+   O Streamlit Cloud fornece estatísticas de uso básicas
+
+💡 Limites:
+   Plano gratuito: 1 app privado + ilimitados públicos
+   Recursos: Suficientes para uso interno de equipe pequena/média
+
+💡 Branches:
+   Use branches para testar mudanças antes do deploy:
+   git checkout -b teste-mudancas
+   git push -u origin teste-mudanças
+   Deploy em URL separada para testar
+
+💡 Secrets (dados sensíveis):
+   Se precisar no futuro, use Streamlit Secrets:
+   Settings → Secrets no painel do Streamlit Cloud
+
+═══════════════════════════════════════════════════════════════════════
+RECURSOS ÚTEIS
+═══════════════════════════════════════════════════════════════════════
+
+📚 Documentação Streamlit Cloud:
+   https://docs.streamlit.io/streamlit-community-cloud
+
+📚 GitHub Docs:
+   https://docs.github.com/pt
+
+📹 Vídeo Tutorial Streamlit Deploy:
+   https://www.youtube.com/results?search_query=streamlit+deploy
+
+💬 Comunidade Streamlit:
+   https://discuss.streamlit.io/
+
+═══════════════════════════════════════════════════════════════════════
+CHECKLIST FINAL
+═══════════════════════════════════════════════════════════════════════
+
+Antes de fazer deploy, confirme:
+
+□ Todos os arquivos necessários estão na pasta
+□ .gitignore está configurado
+□ requirements.txt está atualizado
+□ README.md está configurado
+□ Testei localmente (streamlit run app.py funciona)
+□ Conta GitHub criada
+□ Conta Streamlit Cloud criada
+□ Repositório criado no GitHub
+□ Código enviado para GitHub (git push)
+□ Deploy configurado no Streamlit Cloud
+□ Aplicação funcionando online
+□ Link compartilhado com a equipe
+
+═══════════════════════════════════════════════════════════════════════
+
+🎉 Parabéns! Sua calculadora está online e acessível para toda equipe!
+
+Dúvidas? Consulte a documentação ou entre em contato com TI.
+
+═══════════════════════════════════════════════════════════════════════
